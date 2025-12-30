@@ -1,0 +1,57 @@
+{
+  "name": "@messai-io/mess-hypotheses",
+  "version": "0.1.0",
+  "description": "Research gap identification and hypothesis generation for MES research",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "research",
+    "hypothesis",
+    "knowledge-gap",
+    "mes",
+    "visualization",
+    "webgl",
+    "confidence-scoring"
+  ],
+  "author": "MESSAI Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Messai-io/MESS-Hypotheses.git"
+  },
+  "homepage": "https://github.com/Messai-io/MESS-Hypotheses",
+  "bugs": {
+    "url": "https://github.com/Messai-io/MESS-Hypotheses/issues"
+  },
+  "peerDependencies": {
+    "d3": ">=7.0.0"
+  },
+  "devDependencies": {
+    "@types/d3": "^7.0.0",
+    "@types/node": "^20.0.0",
+    "eslint": "^8.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}
