@@ -1,5 +1,18 @@
 # MESS-Hypotheses
 
+<!-- MIRROR_DISCLOSURE_START -->
+
+> **This repository is a downstream mirror.** Source of truth lives in the
+> private `messai-ai` monorepo; this mirror is updated automatically on each
+> release. Issues and Discussions are welcome here. PRs against this mirror will
+> be redirected — see [CONTRIBUTING.md](./CONTRIBUTING.md).
+>
+> History was reset on **YYYY-MM-DD** as part of monorepo consolidation.
+> Versions tagged before that date (e.g. `v0.2.0`) remain accessible as
+> historical refs and retain their Zenodo DOIs.
+
+<!-- MIRROR_DISCLOSURE_END -->
+
 **Research gap identification and hypothesis generation for MES research**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -7,9 +20,11 @@
 
 ## Overview
 
-MESS-Hypotheses provides tools for identifying research gaps and generating hypotheses:
+MESS-Hypotheses provides tools for identifying research gaps and generating
+hypotheses:
 
-- **Knowledge Gap Visualization** - WebGL network visualization (10K+ nodes at 60 FPS)
+- **Knowledge Gap Visualization** - WebGL network visualization (10K+ nodes at
+  60 FPS)
 - **Confidence Scoring** - Multi-factor confidence methodology
 - **Gap Prioritization** - Urgency/Impact/Feasibility scoring
 - **Contradiction Detection** - Find conflicting research findings
@@ -30,8 +45,8 @@ import { KnowledgeGapNetwork } from '@messai-io/mess-hypotheses';
 
 const network = new KnowledgeGapNetwork({
   container: document.getElementById('visualization'),
-  layout: 'radial',  // center = high certainty, edge = gaps
-  maxNodes: 10000
+  layout: 'radial', // center = high certainty, edge = gaps
+  maxNodes: 10000,
 });
 
 // Load research data
@@ -53,15 +68,15 @@ const scorer = new ConfidenceScorer();
 
 // Score confidence in a research finding
 const score = scorer.calculate({
-  literatureSupport: 0.8,    // 12 supporting papers
-  modelValidation: 0.6,      // Partial model agreement
-  dataQuality: 0.9,          // High-quality experimental data
-  reproducibility: 0.7,      // 70% reproduction rate
-  sampleSize: 0.65           // Moderate sample sizes
+  literatureSupport: 0.8, // 12 supporting papers
+  modelValidation: 0.6, // Partial model agreement
+  dataQuality: 0.9, // High-quality experimental data
+  reproducibility: 0.7, // 70% reproduction rate
+  sampleSize: 0.65, // Moderate sample sizes
 });
 
-console.log(score.overall);        // 0.73
-console.log(score.breakdown);      // Factor-by-factor scores
+console.log(score.overall); // 0.73
+console.log(score.breakdown); // Factor-by-factor scores
 console.log(score.recommendations); // How to improve confidence
 ```
 
@@ -74,9 +89,9 @@ const prioritizer = new GapPrioritizer();
 
 // Prioritize research gaps
 const prioritized = prioritizer.rank(gaps, {
-  urgency: 0.3,      // Weight for time-sensitivity
-  impact: 0.4,       // Weight for potential impact
-  feasibility: 0.3   // Weight for research feasibility
+  urgency: 0.3, // Weight for time-sensitivity
+  impact: 0.4, // Weight for potential impact
+  feasibility: 0.3, // Weight for research feasibility
 });
 
 console.log(prioritized[0].gap);
@@ -117,8 +132,8 @@ const analysis = clustering.analyze(papers, {
     'materials_science',
     'environmental_engineering',
     'biotechnology',
-    'systems_biology'
-  ]
+    'systems_biology',
+  ],
 });
 
 console.log(analysis.clusters);

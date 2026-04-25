@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+type: software
+title: "@messai-io/mess-hypotheses"
+version: "0.1.0"
+abstract: "Research gap identification and hypothesis generation for MES research"
+repository-code: "https://github.com/Messai-io/MESS-Hypotheses.git"
+url: "https://github.com/Messai-io/MESS-Hypotheses"
+license: "MIT"
+authors:
+  - family-names: "Frons"
+    given-names: "Sam"
+    affiliation: "MESSAI"
