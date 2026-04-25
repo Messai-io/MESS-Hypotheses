@@ -2,8 +2,16 @@
   "name": "@messai-io/mess-hypotheses",
   "version": "0.1.0",
   "description": "Research gap identification and hypothesis generation for MES research",
+  "license": "MIT",
+  "homepage": "https://github.com/Messai-io/MESS-Hypotheses",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Messai-io/MESS-Hypotheses.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Messai-io/MESS-Hypotheses/issues"
+  },
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
@@ -34,18 +42,6 @@
     "confidence-scoring"
   ],
   "author": "MESSAI Community",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Messai-io/MESS-Hypotheses.git"
-  },
-  "homepage": "https://github.com/Messai-io/MESS-Hypotheses",
-  "bugs": {
-    "url": "https://github.com/Messai-io/MESS-Hypotheses/issues"
-  },
-  "peerDependencies": {
-    "d3": ">=7.0.0"
-  },
   "devDependencies": {
     "@types/d3": "^7.0.0",
     "@types/node": "^20.0.0",
@@ -53,5 +49,9 @@
     "tsup": "^8.0.0",
     "typescript": "^5.0.0",
     "vitest": "^1.0.0"
-  }
+  },
+  "peerDependencies": {
+    "d3": ">=7.0.0"
+  },
+  "module": "dist/index.mjs"
 }
