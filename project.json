@@ -1,0 +1,15 @@
+{
+  "name": "mess-hypotheses",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "open-source/mess-hypotheses",
+  "projectType": "library",
+  "tags": ["scope:open-source", "type:code"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["open-source/mess-hypotheses/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  }
+}
