@@ -61,24 +61,69 @@ const gaps = network.exportGaps();
 
 ### Confidence Scoring
 
-```javascript
-import { ConfidenceScorer } from '@messai-io/mess-hypotheses';
+The implemented confidence API is a set of **pure functions** in
+[`src/algorithms/confidence.ts`](./src/algorithms/confidence.ts) — there is no
+`ConfidenceScorer` class and no `loadData()` entry point. The primary function
+is `calculateConfidence(factors)`.
 
-const scorer = new ConfidenceScorer();
+```typescript
+import { calculateConfidence } from '@messai-io/mess-hypotheses';
 
-// Score confidence in a research finding
-const score = scorer.calculate({
-  literatureSupport: 0.8, // 12 supporting papers
-  modelValidation: 0.6, // Partial model agreement
-  dataQuality: 0.9, // High-quality experimental data
-  reproducibility: 0.7, // 70% reproduction rate
-  sampleSize: 0.65, // Moderate sample sizes
+const score = calculateConfidence({
+  literatureSupport: 12, // number of supporting papers (NOT a 0–1 fraction)
+  modelValidation: 0.6, // R² / validation score, 0–1
+  parameterRange: 'optimal', // 'optimal' | 'typical' | 'extreme'
+  dataQuality: 'measured', // 'measured' | 'estimated' | 'theoretical'
+  scaleValidation: 'pilot', // 'lab' | 'pilot' | 'industrial' | 'none'
+  temporalStability: 0.7, // consistency over time, 0–1
+  uncertaintyLevel: 20, // uncertainty percentage (lower is better)
 });
 
-console.log(score.overall); // 0.73
-console.log(score.breakdown); // Factor-by-factor scores
-console.log(score.recommendations); // How to improve confidence
+console.log(score.overall); // integer 0–100
+console.log(score.category); // 'high' | 'medium' | 'low'
+console.log(score.explanation); // human-readable summary string
+console.log(score.recommendations); // up to 3 improvement suggestions
 ```
+
+**Scoring methodology (as implemented).** `calculateConfidence` merges the given
+factors over defaults, converts each of seven factors to a 0–100 subscore, and
+combines them as a fixed-weight sum:
+
+| Factor              | Weight | Subscore mapping (verified in code)                       |
+| ------------------- | ------ | --------------------------------------------------------- |
+| `literatureSupport` | 0.25   | `min(100, papers × 5)` — 20 papers saturates at 100       |
+| `modelValidation`   | 0.20   | `value × 100` (input is 0–1)                              |
+| `parameterRange`    | 0.15   | `optimal → 100`, `typical → 75`, `extreme → 25`           |
+| `dataQuality`       | 0.15   | `measured → 100`, `estimated → 60`, `theoretical → 30`    |
+| `scaleValidation`   | 0.10   | `industrial → 100`, `pilot → 75`, `lab → 50`, `none → 25` |
+| `temporalStability` | 0.10   | `value × 100` (input is 0–1)                              |
+| `uncertaintyLevel`  | 0.05   | `max(0, 100 − uncertaintyPercent)`                        |
+
+The weights sum to 1.0, so `overall` is a weighted average on the 0–100 scale
+(rounded to an integer). Category thresholds: **`overall ≥ 70` → high**,
+**`≥ 40` → medium**, otherwise **low**. The `explanation` string names the
+strongest factor (subscore ≥ 80) and, if present, the weakest concerning factor
+(subscore < 40); `recommendations` returns up to three improvement suggestions
+triggered by low subscores.
+
+**Related helpers** in the same module wrap `calculateConfidence` with
+domain-specific defaults:
+
+- `getParameterConfidence(parameter, value, optimalRange)` — scores a parameter
+  value against an optimal `[min, max]` range.
+- `getScaleUpConfidence(fromScale, toScale, validationData?)` — scores a
+  scale-up prediction from the scale ratio.
+- `getEconomicConfidence(timeHorizon, marketVolatility)` — scores an economic
+  projection over a time horizon.
+- `aggregateConfidence(scores[])` — combines multiple `ConfidenceScore`s
+  (weights each by its own `overall`).
+- `formatConfidence(score)` — returns display tokens (color / icon / label) for
+  the score category.
+
+> **Note on inputs.** `literatureSupport` here is a **paper count**, not a 0–1
+> fraction, and `uncertaintyLevel` is a **percentage** where lower is better.
+> The full `ConfidenceFactors` / `ConfidenceScore` interfaces are defined at the
+> top of `src/algorithms/confidence.ts`.
 
 ### Gap Prioritization
 
