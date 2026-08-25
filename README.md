@@ -15,7 +15,6 @@
 **Research gap identification and hypothesis generation for MES research**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![npm version](https://badge.fury.io/js/@messai-io%2Fmess-hypotheses.svg)](https://www.npmjs.com/package/@messai-io/mess-hypotheses)
 
 ## Overview
 
@@ -31,9 +30,16 @@ hypotheses:
 
 ## Installation
 
+> **Not yet published to npm.** This package is source-available here while its
+> public API stabilises. Use it by cloning the mirror:
+
 ```bash
-npm install @messai-io/mess-hypotheses
+git clone https://github.com/Messai-io/MESS-Hypotheses.git
+cd MESS-Hypotheses && pnpm install && pnpm build
 ```
+
+Track [the packaging issue](https://github.com/Messai-io/MESS-Hypotheses/issues)
+for the npm release.
 
 ## Features
 
@@ -201,8 +207,6 @@ console.log(analysis.collaborationOpportunities);
 - Level-of-detail for zoom
 
 ## API Reference
-
-See [API Documentation](docs/API.md) for complete reference.
 
 ## Contributing
 
