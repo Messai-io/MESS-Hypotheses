@@ -1,7 +1,7 @@
 'use client';
 
-import { WebGLNetworkNode } from '../WebGLRadialNetwork';
-import { MESDiscipline } from '../scientific-data-types';
+import { WebGLNetworkNode } from '../visualization/webgl-network-types';
+import { MESDiscipline } from '../visualization/scientific-data-types';
 
 export interface DisciplineCluster {
   discipline: MESDiscipline;

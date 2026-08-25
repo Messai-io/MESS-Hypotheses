@@ -4,7 +4,7 @@
  */
 
 import * as THREE from 'three';
-import { WebGLNetworkNode, WebGLNetworkLink } from './WebGLRadialNetwork';
+import { WebGLNetworkNode, WebGLNetworkLink } from './webgl-network-types';
 
 // LOD configuration for different performance levels
 export const LOD_CONFIG = {

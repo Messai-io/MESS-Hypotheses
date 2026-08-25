@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { logger } from '@/lib/logger';
+import { logger, getApiEndpoint } from '../lib/config';
 
 interface EnrichmentResult {
   paperId: string;
@@ -36,7 +36,7 @@ export function useExternalEnrichment() {
    */
   const enrichPaper = useCallback(async (paperId: string): Promise<EnrichmentResult | null> => {
     try {
-      const response = await fetch(`/api/external-search?enrichPaperId=${paperId}`);
+      const response = await fetch(getApiEndpoint(`external-search?enrichPaperId=${paperId}`));
 
       if (!response.ok) {
         throw new Error(`Failed to enrich paper: ${response.status}`);
@@ -104,7 +104,7 @@ export function useExternalEnrichment() {
           maxResults: maxResults.toString(),
         });
 
-        const response = await fetch(`/api/external-search?${params}`);
+        const response = await fetch(getApiEndpoint(`external-search?${params}`));
 
         if (!response.ok) {
           throw new Error(`Search failed: ${response.status}`);
@@ -129,7 +129,7 @@ export function useExternalEnrichment() {
       source: 'pubmed' | 'crossref'
     ): Promise<{ paperId: string; paper: any } | null> => {
       try {
-        const response = await fetch('/api/external-search', {
+        const response = await fetch(getApiEndpoint('external-search'), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -163,7 +163,7 @@ export function useExternalEnrichment() {
 
       for (const doi of knownDOIs) {
         try {
-          const response = await fetch(`/api/external-search?doi=${doi}`);
+          const response = await fetch(getApiEndpoint(`external-search?doi=${doi}`));
 
           if (response.ok) {
             const data = await response.json();

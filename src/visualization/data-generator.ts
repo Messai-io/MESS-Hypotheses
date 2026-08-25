@@ -3,7 +3,7 @@
  * Generates realistic datasets for microbial electrochemical systems research
  */
 
-import { WebGLNetworkNode } from './WebGLRadialNetwork';
+import { WebGLNetworkNode } from './webgl-network-types';
 
 // Scientific domain knowledge for realistic data generation
 const RESEARCH_DOMAINS = {

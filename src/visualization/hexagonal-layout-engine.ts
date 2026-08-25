@@ -1,6 +1,6 @@
 'use client';
 
-import { WebGLNetworkNode } from './WebGLRadialNetwork';
+import { WebGLNetworkNode } from './webgl-network-types';
 import { MESDiscipline } from './scientific-data-types';
 
 /**

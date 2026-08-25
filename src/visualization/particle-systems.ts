@@ -1,7 +1,7 @@
 'use client';
 
 import * as THREE from 'three';
-import { WebGLNetworkNode } from './WebGLRadialNetwork';
+import { WebGLNetworkNode } from './webgl-network-types';
 import { HexagonalPosition, KnowledgeLayer } from './hexagonal-layout-engine';
 
 /**

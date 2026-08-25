@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import type { WebGLNetworkNode } from '../WebGLRadialNetwork';
+import type { WebGLNetworkNode } from '../visualization/webgl-network-types';
 
 /**
  * WebGL Performance Optimizer for Large-Scale Knowledge Graph Visualization

@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { getApiEndpoint, debugLog, errorLog } from '@/lib/config';
-import type { WebGLNetworkNode, WebGLNetworkLink } from '../WebGLRadialNetwork';
-import type { MESDiscipline, ResearchRelationship } from '../scientific-data-types';
+import { getApiEndpoint, debugLog, errorLog } from '../lib/config';
+import type { WebGLNetworkNode, WebGLNetworkLink } from '../visualization/webgl-network-types';
+import type { MESDiscipline, ResearchRelationship } from '../visualization/scientific-data-types';
 
 interface KnowledgeGraphFilters {
   yearStart?: number;
